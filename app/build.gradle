@@ -4,23 +4,22 @@ plugins {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "top.niunaijun.blackboxa"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 2
         versionName "1.1.0"
-
-        flavorDimensions "BlackBox32"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    //渠道维度  dimension 一样的组合一起 不一样在后边组合  默认同一维度
+    flavorDimensions "BlackBox" /*,'abi'*/
     productFlavors {
-        BlackBox32 {
+        arm {
+           // dimension "BlackBox"
             applicationId "top.niunaijun.blackboxa32"
             ndk {
                 abiFilters "armeabi-v7a"
@@ -28,7 +27,7 @@ android {
             resValue "string", "app_name", "BlackBox32"
         }
 
-        BlackBox64 {
+        arm64 {
             applicationId "top.niunaijun.blackboxa64"
             ndk {
                 abiFilters "arm64-v8a"
@@ -75,8 +74,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.3.0-rc01'
+    implementation 'androidx.core:core-ktx:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.recyclerview:recyclerview:1.2.0"
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
@@ -92,9 +91,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
 
-
     implementation project(':Bcore')
-
 
     implementation 'com.tbuonomo:dotsindicator:4.2'
     //viewPager2 指示点
@@ -108,7 +105,6 @@ dependencies {
     //searchView
     implementation 'com.github.Othershe:CornerLabelView:1.0.0'
     //图标角标
-
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
